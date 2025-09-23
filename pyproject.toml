@@ -1,0 +1,28 @@
+[project]
+name = "animaldex"
+version = "0.1.0"
+description = "Educational wildlife platform API for ecosystem learning and conservation action"
+authors = [
+    {name = "Nicole Trieu",email = "nicole.nghi.trieu@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi (>=0.117.1,<0.118.0)",
+    "uvicorn[standard] (>=0.36.0,<0.37.0)",
+    "sqlalchemy (>=2.0.43,<3.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "alembic (>=1.16.5,<2.0.0)",
+    "pydantic (>=2.11.9,<3.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "bcrypt (>=4.3.0,<5.0.0)",
+    "python-jose[cryptography] (>=3.5.0,<4.0.0)",
+    "requests (>=2.32.5,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
