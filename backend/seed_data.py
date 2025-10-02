@@ -71,7 +71,7 @@ def seed_animals(db):
             ],
             "diet": "Omnivore",
             "lifespan": "3-6 years in wild, up to 14 in captivity",
-            "image_urls": ["https://images.unsplash.com/photo-1564349683136-77e08dba1ef7"]
+            "image_urls": ["https://images.unsplash.com/photo-1470093851219-69951fcbb533", "https://images.unsplash.com/photo-1712322424999-96d2f4d84df0"]
         },
         {
             "name": "Clownfish",
@@ -87,7 +87,7 @@ def seed_animals(db):
             ],
             "diet": "Omnivore",
             "lifespan": "6-10 years",
-            "image_urls": ["https://images.unsplash.com/photo-1535591273668-578e31182c4f"]
+            "image_urls": ["https://images.unsplash.com/photo-1535591273668-578e31182c4f", "https://images.unsplash.com/photo-1536168032936-9ce3b4b3165c"]
         },
         {
             "name": "African Elephant",
@@ -103,7 +103,7 @@ def seed_animals(db):
             ],
             "diet": "Herbivore",
             "lifespan": "60-70 years",
-            "image_urls": ["https://images.unsplash.com/photo-1564760055775-d63b17a55c44"]
+            "image_urls": ["https://images.unsplash.com/photo-1564760055775-d63b17a55c44", "https://images.unsplash.com/photo-1534996367885-1c10e3e890be"]
         },
         {
             "name": "Gray Wolf",
@@ -119,7 +119,7 @@ def seed_animals(db):
             ],
             "diet": "Carnivore",
             "lifespan": "6-8 years in wild, 13-16 in captivity",
-            "image_urls": ["https://images.unsplash.com/photo-1602491453631-e2a5ad90a131"]
+            "image_urls": ["https://images.unsplash.com/photo-1546638285-f17602bf4bdc", "https://images.unsplash.com/photo-1515253475595-2aa42d668c8c"]
         },
         {
             "name": "Giant Panda",
@@ -135,7 +135,7 @@ def seed_animals(db):
             ],
             "diet": "Herbivore (99% bamboo)",
             "lifespan": "20 years in wild, 30 in captivity",
-            "image_urls": ["https://images.unsplash.com/photo-1564349683136-77e08dba1ef7"]
+            "image_urls": ["https://images.unsplash.com/photo-1564349683136-77e08dba1ef7", "https://images.unsplash.com/photo-1709128521516-1d43665e94a6"]
         },
         {
             "name": "Sea Turtle",
@@ -151,7 +151,7 @@ def seed_animals(db):
             ],
             "diet": "Omnivore (varies by species)",
             "lifespan": "50-100 years",
-            "image_urls": ["https://images.unsplash.com/photo-1559827260-dc66d52bef19"]
+            "image_urls": ["https://images.unsplash.com/photo-1581242163695-19d0acfd486f", "https://images.unsplash.com/photo-1573878125221-fbace3474fb2"]
         },
         {
             "name": "Honeybee",
@@ -167,7 +167,7 @@ def seed_animals(db):
             ],
             "diet": "Herbivore (nectar and pollen)",
             "lifespan": "Worker: 6 weeks, Queen: 2-5 years",
-            "image_urls": ["https://images.unsplash.com/photo-1558642891-54c5e27bc5bc"]
+            "image_urls": ["https://images.unsplash.com/photo-1645370982616-9312cc07a8a1", "https://images.unsplash.com/photo-1627515795375-8a6010609c53"]
         },
         {
             "name": "Monarch Butterfly",
@@ -183,7 +183,7 @@ def seed_animals(db):
             ],
             "diet": "Herbivore (milkweed as caterpillar, nectar as adult)",
             "lifespan": "2-6 weeks (except migration generation: 8-9 months)",
-            "image_urls": ["https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13"]
+            "image_urls": ["https://images.unsplash.com/photo-1676261122648-a3b853d867ba", "https://images.unsplash.com/photo-1509715513011-e394f0cb20c4"]
         },
         {
             "name": "Polar Bear",
@@ -199,7 +199,7 @@ def seed_animals(db):
             ],
             "diet": "Carnivore (primarily seals)",
             "lifespan": "25-30 years",
-            "image_urls": ["https://images.unsplash.com/photo-1589656966895-2f33e7653819"]
+            "image_urls": ["https://images.unsplash.com/photo-1610748402795-859b3099fe39", "https://images.unsplash.com/photo-1646365532028-2c47743d3ad3"]
         },
         {
             "name": "Coral Polyp",
@@ -215,7 +215,7 @@ def seed_animals(db):
             ],
             "diet": "Carnivore (plankton) + photosynthesis from algae",
             "lifespan": "Hundreds to thousands of years (colony)",
-            "image_urls": ["https://images.unsplash.com/photo-1582967788606-a171c1080cb0"]
+            "image_urls": ["https://images.unsplash.com/photo-1582967788606-a171c1080cb0", "https://images.unsplash.com/photo-1621775595317-4de3a6646c6c"]
         }
     ]
     

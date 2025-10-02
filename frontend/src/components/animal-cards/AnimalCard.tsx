@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
 
 interface AnimalCardProps {
@@ -9,21 +9,35 @@ interface AnimalCardProps {
   scientificName: string;
   conservationStatus?: string;
   imageUrl: string;
+  hoverImageUrl: string;
   onClick?: () => void;
 }
 
 const getConservationColor = (status?: string) => {
-  if (!status) return 'bg-gray-100 text-gray-800';
+  if (!status) return 'bg-gray-100 text-gray-800 border-gray-200';
   
-  const colors: Record<string, string> = {
-    'LEAST_CONCERN': 'bg-green-100 text-green-800',
-    'NEAR_THREATENED': 'bg-yellow-100 text-yellow-800',
-    'VULNERABLE': 'bg-orange-100 text-orange-800',
-    'ENDANGERED': 'bg-red-100 text-red-800',
-    'CRITICALLY_ENDANGERED': 'bg-red-200 text-red-900',
-  };
+  const normalizedStatus = status.toLowerCase();
   
-  return colors[status] || 'bg-gray-100 text-gray-800';
+  if (normalizedStatus.includes('least concern')) {
+    return 'bg-green-100 text-green-800 border-green-200';
+  }
+  if (normalizedStatus.includes('near threatened')) {
+    return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+  }
+  if (normalizedStatus.includes('vulnerable')) {
+    return 'bg-orange-100 text-orange-800 border-orange-200';
+  }
+  if (normalizedStatus.includes('critically endangered')) {
+    return 'bg-red-200 text-red-900 border-red-300';
+  }
+  if (normalizedStatus.includes('endangered')) {
+    return 'bg-red-100 text-red-800 border-red-200';
+  }
+  if (normalizedStatus.includes('extinct')) {
+    return 'bg-gray-200 text-gray-900 border-gray-300';
+  }
+  
+  return 'bg-gray-100 text-gray-800 border-gray-200';
 };
 
 const formatConservationStatus = (status?: string) => {
@@ -39,9 +53,30 @@ export const AnimalCard: React.FC<AnimalCardProps> = ({
   scientificName,
   conservationStatus,
   imageUrl,
+  hoverImageUrl,
   onClick
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const displayImage = isHovered && hoverImageUrl ? hoverImageUrl : imageUrl;
+
+  // Generate unique blob shapes for this card
+  const blobShapes = useMemo(() => {
+    const randomShape = () => {
+      // Generate more varied values to avoid square-ish shapes
+      const values = Array.from({length: 8}, (_, i) => {
+        // Alternate between higher and lower values for more organic shapes
+        const base = i % 2 === 0 ? 40 : 60;
+        const variance = Math.floor(Math.random() * 30 - 15); // -15 to +15
+        return Math.max(25, Math.min(75, base + variance)); // Clamp between 25-75%
+      });
+      return `${values[0]}% ${values[1]}% ${values[2]}% ${values[3]}% / ${values[4]}% ${values[5]}% ${values[6]}% ${values[7]}%`;
+    };
+    
+    return {
+      default: randomShape(),
+      hover: randomShape()
+    };
+  }, [id]); // Regenerate only if id changes
 
   return (
     <div
@@ -53,24 +88,18 @@ export const AnimalCard: React.FC<AnimalCardProps> = ({
       {/* Blob Image Container */}
       <div
         className={`
-          relative overflow-hidden
-          w-full aspect-square
+          relative overflow-hidden w-full aspect-square
           transition-all duration-700 ease-in-out
-          ${isHovered 
-            ? 'shadow-2xl -translate-y-2' 
-            : 'shadow-lg'
-          }
+          ${isHovered ? 'shadow-2xl -translate-y-2' : 'shadow-lg'}
         `}
         style={{
-          borderRadius: isHovered 
-            ? '30% 60% 70% 40% / 50% 60% 30% 60%'
-            : '60% 40% 30% 70% / 60% 30% 70% 40%',
+          borderRadius: isHovered ? blobShapes.hover : blobShapes.default
         }}
       >
         {/* Image */}
         <div className="absolute inset-0 overflow-hidden">
           <img
-            src={imageUrl || '/api/placeholder/400/400'}
+            src={displayImage || '/api/placeholder/400/400'}
             alt={name}
             className={`
               w-full h-full object-cover
