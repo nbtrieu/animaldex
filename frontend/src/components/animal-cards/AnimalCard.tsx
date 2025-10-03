@@ -2,50 +2,18 @@
 
 import React, { useState, useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
+import type { ConservationStatus } from "@/types"
+import { getConservationColor, formatConservationStatus } from '@/lib/utils';
 
 interface AnimalCardProps {
   id: number;
   name: string;
   scientificName: string;
-  conservationStatus?: string;
+  conservationStatus?: ConservationStatus;
   imageUrl: string;
   hoverImageUrl: string;
   onClick?: () => void;
 }
-
-const getConservationColor = (status?: string) => {
-  if (!status) return 'bg-gray-100 text-gray-800 border-gray-200';
-  
-  const normalizedStatus = status.toLowerCase();
-  
-  if (normalizedStatus.includes('least concern')) {
-    return 'bg-green-100 text-green-800 border-green-200';
-  }
-  if (normalizedStatus.includes('near threatened')) {
-    return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-  }
-  if (normalizedStatus.includes('vulnerable')) {
-    return 'bg-orange-100 text-orange-800 border-orange-200';
-  }
-  if (normalizedStatus.includes('critically endangered')) {
-    return 'bg-red-200 text-red-900 border-red-300';
-  }
-  if (normalizedStatus.includes('endangered')) {
-    return 'bg-red-100 text-red-800 border-red-200';
-  }
-  if (normalizedStatus.includes('extinct')) {
-    return 'bg-gray-200 text-gray-900 border-gray-300';
-  }
-  
-  return 'bg-gray-100 text-gray-800 border-gray-200';
-};
-
-const formatConservationStatus = (status?: string) => {
-  if (!status) return '';
-  return status.split('_').map(word => 
-    word.charAt(0) + word.slice(1).toLowerCase()
-  ).join(' ');
-};
 
 export const AnimalCard: React.FC<AnimalCardProps> = ({
   id,
