@@ -1,4 +1,3 @@
-// frontend/src/app/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -15,11 +14,9 @@ export default function HomePage() {
     const fetchAnimals = async () => {
       try {
         const response = await fetch('http://localhost:8000/api/animals/');
-        
         if (!response.ok) {
           throw new Error('Failed to fetch animals');
         }
-        
         const data = await response.json();
         setAnimals(data);
       } catch (err) {
@@ -28,7 +25,6 @@ export default function HomePage() {
         setLoading(false);
       }
     };
-
     fetchAnimals();
   }, []);
 
@@ -49,17 +45,17 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+      <div className="max-w-7xl mx-auto px-8 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            AnimalDex
+            Animal Discovery
           </h1>
           <p className="text-gray-600">
-            Discover animals, explore ecosystems, and take conservation action
+            Discover animals, explore ecosystems, and take conservation actions
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {animals.map((animal) => (
             <Link key={animal.id} href={`/animals/${animal.id}`}>
