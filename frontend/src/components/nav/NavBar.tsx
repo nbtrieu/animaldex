@@ -7,8 +7,8 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Animal Discovery', href: '#', active: true },
-    { name: 'Ecosystem Builder', href: '#', active: false },
+    { name: 'Animal Discovery', href: '/', active: true },
+    { name: 'Ecosystem Builder', href: '/ecosystem-builder', active: false },
     { name: 'Conservation Action Center', href: '#', active: false }
   ];
 

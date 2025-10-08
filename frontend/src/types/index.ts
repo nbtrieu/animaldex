@@ -23,14 +23,14 @@ export interface AnimalSummary {
   scientific_name: string;
   conservation_status: ConservationStatus;
   image_urls: string[];
+  diet: string;
 }
 
-export interface Habitat {
+export interface HabitatSummary {
   id: number;
   name: string;
   description: string;
   climate: string;
-  geography: string;
   key_characteristics: string[];
   image_url?: string;
 }
@@ -49,14 +49,45 @@ export interface ConservationEffort {
   donation_url?: string;
 }
 
-export type ConservationStatus = 
-  | 'LEAST_CONCERN'
-  | 'NEAR_THREATENED'
-  | 'VULNERABLE'
-  | 'ENDANGERED'
-  | 'CRITICALLY_ENDANGERED'
-  | 'EXTINCT_WILD'
-  | 'EXTINCT';
+export type ConservationStatus =
+  | 'Least Concern'
+  | 'Near Threatened'
+  | 'Vulnerable'
+  | 'Endangered'
+  | 'Critically Endangered'
+  | 'Extinct in the Wild'
+  | 'Extinct';
+
+export interface EcosystemAnimal extends AnimalSummary {
+  x: number;
+  y: number;
+  ecosystemId: string;
+}
+
+export type RelationshipType = 
+  | 'predator-prey'
+  | 'competition'
+  | 'mutualism'
+  | 'commensalism'
+  | 'parasitism'
+
+export interface Relationship {
+  id: string;
+  from: string;
+  to: string;
+  type: RelationshipType
+}
+
+// for later:
+export interface SavedEcosystem {
+  id: number;
+  name: string;
+  habitat_id: number;
+  animals: EcosystemAnimal[];
+  relationships: Relationship[];
+  created_by: number;
+  created_at: string;
+}
 
 export interface User {
   id: number;

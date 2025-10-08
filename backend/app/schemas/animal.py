@@ -42,6 +42,7 @@ class AnimalSummary(BaseModel):
     scientific_name: str
     conservation_status: Optional[ConservationStatus] = None
     image_urls: List[str] = []
+    diet: Optional[str] = None
     
     class Config:
         from_attributes = True
