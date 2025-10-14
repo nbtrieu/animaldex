@@ -1,15 +1,16 @@
 "use client"
-
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Search, User, Menu, X } from 'lucide-react';
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
-    { name: 'Animal Discovery', href: '/', active: true },
-    { name: 'Ecosystem Builder', href: '/ecosystem-builder', active: false },
-    { name: 'Conservation Action Center', href: '#', active: false }
+    { name: 'Animal Discovery', href: '/' },
+    { name: 'Ecosystem Builder', href: '/ecosystem-builder' },
+    { name: 'Conservation Action Center', href: '#' }
   ];
 
   return (
@@ -30,13 +31,13 @@ export const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 className={`text-base transition-colors relative py-1 ${
-                  item.active
+                  pathname === item.href
                     ? 'text-gray-900'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 {item.name}
-                {item.active && (
+                {pathname === item.href && (
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900"></span>
                 )}
               </a>
@@ -75,8 +76,11 @@ export const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                }}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  item.active
+                  pathname === item.href
                     ? 'bg-gray-100 text-gray-900'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}

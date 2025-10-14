@@ -270,13 +270,19 @@ const EcosystemBuilder = () => {
               {/* Relationship Lines */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
                 <defs>
-                  {/* Arrow markers for different relationship types */}
+                  {/* End arrow markers */}
                   <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
                     <polygon points="0 0, 10 3, 0 6" fill="#ef4444" />
                   </marker>
                   <marker id="arrowhead-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
                     <polygon points="0 0, 10 3, 0 6" fill="#f97316" />
                   </marker>
+                  
+                  {/* Start arrow marker - reversed */}
+                  <marker id="arrowhead-orange-start" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto-start-reverse">
+                    <polygon points="0 0, 10 3, 0 6" fill="#f97316" />
+                  </marker>
+                  
                   <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
                     <polygon points="0 0, 10 3, 0 6" fill="#22c55e" />
                   </marker>
@@ -296,54 +302,88 @@ const EcosystemBuilder = () => {
                   
                   const relType = relationshipTypes.find(t => t.id === rel.type);
                   
+                  // Calculate positions
+                  const fromX = fromAnimal.x + 8;
+                  const fromY = fromAnimal.y + 8;
+                  const toX = toAnimal.x + 8;
+                  const toY = toAnimal.y + 8;
+                  
+                  const angle = Math.atan2(toY - fromY, toX - fromX);
+                  const offset = 6;
+
+                  const startX = fromX + (offset * Math.cos(angle));
+                  const startY = fromY + (offset * Math.sin(angle));
+                  const endX = toX - (offset * Math.cos(angle));
+                  const endY = toY - (offset * Math.sin(angle));
+                  
                   const getLinePattern = () => {
                     switch(rel.type) {
                       case 'predator-prey':
-                        return { strokeDasharray: '0', strokeWidth: '4', marker: 'url(#arrowhead-red)' };
+                        return { strokeDasharray: '0', strokeWidth: '3', marker: 'url(#arrowhead-red)' };
                       case 'competition':
-                        return { strokeDasharray: '10,5', strokeWidth: '3', marker: '' };
+                        return { strokeDasharray: '8,4', strokeWidth: '3', marker: 'url(#arrowhead-orange)' };
                       case 'mutualism':
-                        return { strokeDasharray: '0', strokeWidth: '4', marker: 'url(#arrowhead-green)' };
+                        return { strokeDasharray: '0', strokeWidth: '3', marker: 'url(#arrowhead-green)' };
                       case 'commensalism':
-                        return { strokeDasharray: '15,5,5,5', strokeWidth: '3', marker: 'url(#arrowhead-blue)' };
+                        return { strokeDasharray: '12,4,4,4', strokeWidth: '3', marker: 'url(#arrowhead-blue)' };
                       case 'parasitism':
-                        return { strokeDasharray: '5,5', strokeWidth: '3', marker: 'url(#arrowhead-purple)' };
+                        return { strokeDasharray: '4,4', strokeWidth: '3', marker: 'url(#arrowhead-purple)' };
                       default:
-                        return { strokeDasharray: '5,5', strokeWidth: '3', marker: '' };
+                        return { strokeDasharray: '4,4', strokeWidth: '3', marker: '' };
                     }
                   };
                   
                   const pattern = getLinePattern();
                   
+                  // For competition, draw two separate arrows
+                  if (rel.type === 'competition') {
+                    const midX = (startX + endX) / 2;
+                    const midY = (startY + endY) / 2;
+                    
+                    return (
+                      <g key={`line-${rel.id}`}>
+                        {/* First half - arrow pointing BACKWARD toward start */}
+                        <line
+                          x1={`${midX}%`}
+                          y1={`${midY}%`}
+                          x2={`${startX}%`}
+                          y2={`${startY}%`}
+                          stroke={relType?.color}
+                          strokeWidth={pattern.strokeWidth}
+                          strokeDasharray={pattern.strokeDasharray}
+                          markerEnd={pattern.marker}
+                          opacity="0.9"
+                        />
+                        {/* Second half - arrow pointing FORWARD toward end */}
+                        <line
+                          x1={`${midX}%`}
+                          y1={`${midY}%`}
+                          x2={`${endX}%`}
+                          y2={`${endY}%`}
+                          stroke={relType?.color}
+                          strokeWidth={pattern.strokeWidth}
+                          strokeDasharray={pattern.strokeDasharray}
+                          markerEnd={pattern.marker}
+                          opacity="0.9"
+                        />
+                      </g>
+                    );
+                  }
+                  
+                  // For all other relationships, single line
                   return (
                     <g key={`line-${rel.id}`}>
-                      {/* Main line */}
                       <line
-                        x1={`${fromAnimal.x + 5}%`}
-                        y1={`${fromAnimal.y + 5}%`}
-                        x2={`${toAnimal.x + 5}%`}
-                        y2={`${toAnimal.y + 5}%`}
+                        x1={`${startX}%`}
+                        y1={`${startY}%`}
+                        x2={`${endX}%`}
+                        y2={`${endY}%`}
                         stroke={relType?.color}
                         strokeWidth={pattern.strokeWidth}
                         strokeDasharray={pattern.strokeDasharray}
                         markerEnd={pattern.marker}
-                        opacity="0.8"
+                        opacity="0.9"
                       />
-                      
-                      {/* Competition: Add opposing arrows */}
-                      {rel.type === 'competition' && (
-                        <line
-                          x1={`${fromAnimal.x + 5}%`}
-                          y1={`${fromAnimal.y + 5}%`}
-                          x2={`${toAnimal.x + 5}%`}
-                          y2={`${toAnimal.y + 5}%`}
-                          stroke={relType?.color}
-                          strokeWidth="3"
-                          strokeDasharray="10,5"
-                          markerStart="url(#arrowhead-orange)"
-                          opacity="0.8"
-                        />
-                      )}
                     </g>
                   );
                 })}
