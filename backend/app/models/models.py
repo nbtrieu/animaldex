@@ -154,6 +154,7 @@ class ConservationEffort(Base):
     organization_name = Column(String)
     website_url = Column(String)
     location = Column(String)
+    image_url = Column(String)
     
     # Problem and solutions
     conservation_problem = Column(Text)  # What threat is being addressed

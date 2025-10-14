@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from app.routers import animals, habitats
+from app.routers import animals, habitats, conservation_efforts
 
 from app.database import engine
 from app.models import models
@@ -33,6 +33,7 @@ app.add_middleware(
 
 app.include_router(animals.router, prefix="/api/animals", tags=["Animals"])
 app.include_router(habitats.router, prefix="/api/habitats", tags=["Habitats"])
+app.include_router(conservation_efforts.router, prefix="/api/conservation-efforts", tags=["Conservation Efforts"])
 
 @app.get("/")
 async def root():
