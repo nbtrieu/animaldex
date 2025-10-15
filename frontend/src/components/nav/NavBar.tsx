@@ -10,7 +10,7 @@ export const Navbar = () => {
   const navItems = [
     { name: 'Animal Discovery', href: '/' },
     { name: 'Ecosystem Builder', href: '/ecosystem-builder' },
-    { name: 'Conservation Action Center', href: '#' }
+    { name: 'Conservation Action Center', href: '/conservation-action-center' }
   ];
 
   return (

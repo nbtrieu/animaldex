@@ -78,6 +78,33 @@ export interface Relationship {
   type: RelationshipType
 }
 
+export interface ConservationEffort {
+  id: number;
+  title: string;
+  description: string;
+  organization_name: string;
+  website_url: string;
+  location: string;
+  conservation_problem: string;
+  current_status: string;
+  petition_url?: string;
+  volunteer_url?: string;
+  donation_url?: string;
+  image_url: string;
+}
+
+export interface Solution {
+  id: number;
+  name: string;
+  approach: string;
+  effectiveness: number;
+  cost: string;
+  timeframe: string;
+  pros: string[];
+  cons: string[];
+}
+
+
 // for later:
 export interface SavedEcosystem {
   id: number;
