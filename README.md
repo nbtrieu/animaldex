@@ -2,7 +2,7 @@
 
 An interactive educational platform that helps students explore animal facts, understand ecosystem relationships, and take meaningful conservation action while meeting NGSS standards.
 
-![AnimalDex Demo](https://via.placeholder.com/800x400/2563eb/ffffff?text=AnimalDex+Demo+Coming+Soon)
+<img width="1512" height="864" alt="AnimalDex home page" src="https://github.com/user-attachments/assets/76c060c4-7b30-47cf-8f7a-ec79483a1c74" />
 
 ## 🌟 Features
 
@@ -29,6 +29,7 @@ An interactive educational platform that helps students explore animal facts, un
 - **NGSS standards alignment** with clear learning objective mapping
 - **Student collaboration tools** for sharing discoveries and solutions
 - **Assessment and quiz system** with instant feedback
+- **AI literacy integration** with intentional AI tools embedded into each activity
 
 ## 🛠️ Tech Stack
 
@@ -98,7 +99,10 @@ An interactive educational platform that helps students explore animal facts, un
 
 | Animal Discovery | Ecosystem Builder | Conservation Center |
 |-----------------|------------------|-------------------|
-| ![Animal Discovery](https://via.placeholder.com/250x150/059669/ffffff?text=Animal+Facts) | ![Ecosystem Builder](https://via.placeholder.com/250x150/dc2626/ffffff?text=Food+Web) | ![Conservation](https://via.placeholder.com/250x150/7c3aed/ffffff?text=Take+Action) |
+| <img width="1512" height="865" alt="AnimalDex Animal details" src="https://github.com/user-attachments/assets/f59ff00e-4f42-424a-9d75-1a2a69892888" /> | <img width="1512" height="865" alt="Ecosystem Builder" src="https://github.com/user-attachments/assets/001d3fb4-4fa1-4529-910a-7e46495a6cb1" /> | <img width="1512" height="865" alt="Conservation Action Center" src="https://github.com/user-attachments/assets/77928d4f-6725-4739-a7ee-9ad174f5a27d" /> |
+
+**AI Literacy Integration**
+<img width="1512" height="865" alt="AI Literacy" src="https://github.com/user-attachments/assets/6bed664a-317e-477e-a237-32e9b0ddf00b" />
 
 ## 🎯 Educational Standards
 
